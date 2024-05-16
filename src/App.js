@@ -75,12 +75,20 @@ export default function Game() {
   );
 }
 
+function isFull(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === null) return false;
+  }
+  return true;
+}
+
 function Board({ xIsNext, squares, onPlay }) {
   const line = calculateWinner(squares);
   const winner = squares[line[0]];
   let status;
   console.log(winner + " " + line) 
   winner ? status = "Winner: " + winner
+    : isFull(squares) ? status = "Draw game"
     : status = "Next player: " + (xIsNext ? "X" : "O");
 
   function handleClick(i) {
