@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
 function Square({ id, value, className, onSquareClick }) {
   return (
