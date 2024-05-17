@@ -113,9 +113,9 @@ function Board({ xIsNext, squares, onPlay }) {
         const index = i + offset;
         entries.push(
         <Square 
-          key={i}
-          id={i} 
-          dataTestid={"button_tile_"+i}
+          key={index}
+          id={index}
+          dataTestid={"button_square_"+index}
           className={line.includes(index) ? "winner" : "square"}
           value={squares[index]} 
           onSquareClick={() => handleClick(index)}
