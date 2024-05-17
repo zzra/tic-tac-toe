@@ -110,10 +110,11 @@ function Board({ xIsNext, squares, onPlay }) {
       const entries = [];
       for (let i = 0; i < 3; i++) {
         const index = i + offset;
+        const key = "button_" + index;
         entries.push(
         <Square 
-          key={index}
-          id={index} 
+          key={key}
+          id={key} 
           className={line.includes(index) ? "winner" : "square"}
           value={squares[index]} 
           onSquareClick={() => handleClick(index)}

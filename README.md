@@ -3,3 +3,6 @@
 ## Current State 
 
 Add toggle button
+
+## Testing
+Uses codeceptjs and playwright
