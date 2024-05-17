@@ -1,10 +1,11 @@
 import { useState } from "react";
 
-function Square({ id, value, className, onSquareClick }) {
+function Square({ id, dataTestid, value, className, onSquareClick }) {
   return (
     <button 
       id={id}
       className={className}
+      data-testid={dataTestid}
       onClick={onSquareClick}
       >
         {value}
@@ -55,7 +56,7 @@ export default function Game() {
     return (
       <li key={move}>
         {(move === currentMove)
-         ? <span>{description}</span>
+         ? <span data-testid={"txt_move_"+move}>{description}</span>
          : <button onClick={() => jumpTo(move)}>{description}</button>
         }
       </li>
@@ -68,7 +69,7 @@ export default function Game() {
         <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay}/>
       </div>
       <div className="game-info">
-        <button onClick={handleReverse}>Reverse Ordering</button>
+        <button onClick={handleReverse} data-testid="button_reverse">Reverse Ordering</button>
         <ol>{(reverse) ? moves.reverse() : moves}</ol>
       </div>
     </div>
@@ -110,24 +111,31 @@ function Board({ xIsNext, squares, onPlay }) {
       const entries = [];
       for (let i = 0; i < 3; i++) {
         const index = i + offset;
-        const key = "button_" + index;
         entries.push(
         <Square 
-          key={key}
-          id={key} 
+          key={i}
+          id={i} 
+          dataTestid={"button_tile_"+i}
           className={line.includes(index) ? "winner" : "square"}
           value={squares[index]} 
           onSquareClick={() => handleClick(index)}
         />
       );
       }
-      return <div className="board-row" key={'r'+offset} id={'r'+offset}>{entries}</div>
+      const rowName = "row_" + Math.floor(offset/3);
+      return <div 
+        className="board-row" 
+        key={rowName}
+        id={rowName} 
+        data-testid={rowName}>
+          {entries}
+        </div>
     }
   }
 
   return (
     <>
-      <div className="status">{status}</div>
+      <div className="status" data-testid="txt_status">{status}</div>
       <BuildBoard />
     </>
   );
