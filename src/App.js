@@ -57,7 +57,7 @@ export default function Game() {
       <li key={move}>
         {(move === currentMove)
          ? <span data-testid={"txt_move_"+move}>{description}</span>
-         : <button onClick={() => jumpTo(move)}>{description}</button>
+         : <button onClick={() => jumpTo(move)} data-testid={"txt_move_"+move}>{description}</button>
         }
       </li>
     )
@@ -70,7 +70,10 @@ export default function Game() {
       </div>
       <div className="game-info">
         <button onClick={handleReverse} data-testid="button_reverse">Reverse Ordering</button>
-        <ol>{(reverse) ? moves.reverse() : moves}</ol>
+        {(reverse) 
+        ? <ol reversed>{moves}</ol>
+        : <ol>{moves}</ol>
+        }
       </div>
     </div>
   );
