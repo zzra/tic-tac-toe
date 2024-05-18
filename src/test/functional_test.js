@@ -11,6 +11,13 @@ Scenario('Can click square as players', ({I}) => {
     I.see("O", {css: "[data-testid='button_square_1']"});
 });
 
+Scenario('Cannot overwrite square by previous player', ({I}) => {
+    I.click({css: "[data-testid='button_square_0']"});
+    I.see("X", {css: "[data-testid='button_square_0']"});
+    I.click({css: "[data-testid='button_square_0']"});
+    I.see("X", {css: "[data-testid='button_square_0']"});
+});
+
 Scenario('Can win as first player', ({I}) => {
     I.click({css: "[data-testid='button_square_0']"});
     I.see("X", {css: "[data-testid='button_square_0']"});
