@@ -68,20 +68,17 @@ Scenario('Can go go to previous move', ({I}) => {
     I.dontSee("O", {css: "[data-testid='button_square_4']"});
 });
 
-Scenario.todo('Can reverse ordering', ({I}) => {
+Scenario('Can reverse ordering', ({I}) => {
     I.click({css: "[data-testid='button_square_3']"});
     I.see("X", {css: "[data-testid='button_square_3']"});
     I.click({css: "[data-testid='button_square_0']"});
     I.see("O", {css: "[data-testid='button_square_0']"});
     I.click({css: "[data-testid='button_square_1']"});
     I.see("X", {css: "[data-testid='button_square_1']"});
-    //I.click({css: "[data-testid='button_square_4']"});
-    //I.see("O", {css: "[data-testid='button_square_4']"});
+    I.see("", {xpath: "//ol"})
+    I.dontSeeElement({xpath: "//ol[@reversed]"});
 
-    locate('2', {css: "//button[data-testid='txt_move_3']/parent::*"});
     I.click({css: "[data-testid='button_reverse']"});
-    //locate('Go to move #3 [0,1]', {css: "//span[data-testid='txt_move_3']"});
 
-    locate('Go to move #3 [0,1]', {css: "//button[data-testid='txt_move_0']"});
-    //I.see("O", {css: "[data-testid='button_square_4']"});
+    I.see("", {xpath: "//ol[@reversed]"});
 });

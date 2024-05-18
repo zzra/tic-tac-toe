@@ -2,7 +2,7 @@
 
 ## Current State 
 
-Add toggle button
+determing how to test react using unit tests, currently e2e using playwright/codeceptjs
 
 ## Testing
 Uses codeceptjs and playwright
